@@ -43,7 +43,9 @@ import me.fabiansuarez.compose.lab.netflixbasicnavigation.ui.theme.*
     showSystemUi = true
 )
 @Composable
-fun HomeScreen() {
+fun HomeScreen(
+    onLogout: () -> Unit = {}
+) {
     var selectedTab by remember { mutableStateOf(0) }
 
     Box(
@@ -72,7 +74,7 @@ fun HomeScreen() {
 
         // ── Top navigation bar ───────────────────────────────────────────────
         NetflixTopBar(
-            onProfileClick = { },
+            onProfileClick = onLogout,
             onSearchClick = { },
             selectedTab = selectedTab,
             onTabSelected = { selectedTab = it }

@@ -33,7 +33,11 @@ import me.fabiansuarez.compose.lab.netflixbasicnavigation.ui.theme.*
 )
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RegisterScreen() {
+fun RegisterScreen(
+    onNavigateToStep2: () -> Unit = {},
+    onNavigateToLogin: () -> Unit = {},
+    onBackClick: () -> Unit = {}
+) {
     val scrollState = rememberScrollState()
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -64,7 +68,7 @@ fun RegisterScreen() {
             ) {
                 // Back arrow
                 IconButton(
-                    onClick = {},
+                    onClick = onBackClick,
                     modifier = Modifier.align(Alignment.CenterStart)
                 ) {
                     Icon(
@@ -202,7 +206,7 @@ fun RegisterScreen() {
 
                 // ── Continue button ──────────────────────────────────────────
                 Button(
-                    onClick = { },
+                    onClick = onNavigateToStep2,
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(52.dp),
@@ -236,7 +240,7 @@ fun RegisterScreen() {
                         color = NetflixWhite,
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Medium,
-                        modifier = Modifier.clickable { }
+                        modifier = Modifier.clickable { onNavigateToLogin() }
                     )
                 }
 
